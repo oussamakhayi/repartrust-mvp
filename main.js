@@ -87,16 +87,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 400);
     });
   
-    // Smooth scrolling for navigation links
+    // Smooth scrolling for navigation links with tab switching
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        
         if (target) {
+          // Scroll to target (both #concierge and #garage will scroll to the forms section)
           target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
+          
+          // Switch tabs based on href
+          if (href === '#concierge') {
+            showConciergeTab();
+          } else if (href === '#garage') {
+            showGarageTab();
+          }
+          
           // Close mobile menu if open
           mobileMenu.classList.add('hidden');
         }
@@ -123,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Concierge Form Submission
-    const conciergeForm = document.getElementById("conciergeForm");
     if (conciergeForm) {
       conciergeForm.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -198,7 +208,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Garage Form Submission
-    const garageForm = document.getElementById("garageForm");
     if (garageForm) {
       garageForm.addEventListener("submit", async function (e) {
         e.preventDefault();
