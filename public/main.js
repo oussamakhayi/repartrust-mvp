@@ -298,6 +298,68 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // Floating Contact Support Button
+  const supportButton = document.getElementById("support-button");
+  const contactPanel = document.getElementById("contact-panel");
+  const closePanel = document.getElementById("close-panel");
+  let isPanelOpen = false;
+
+  function showContactPanel() {
+    contactPanel.classList.remove("scale-0", "opacity-0");
+    contactPanel.classList.add("scale-100", "opacity-100");
+    isPanelOpen = true;
+  }
+
+  function hideContactPanel() {
+    contactPanel.classList.add("scale-0", "opacity-0");
+    contactPanel.classList.remove("scale-100", "opacity-100");
+    isPanelOpen = false;
+  }
+
+  // Toggle panel when support button is clicked
+  if (supportButton) {
+    supportButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (isPanelOpen) {
+        hideContactPanel();
+      } else {
+        showContactPanel();
+      }
+    });
+  }
+
+  // Close panel when close button is clicked
+  if (closePanel) {
+    closePanel.addEventListener("click", (e) => {
+      e.stopPropagation();
+      hideContactPanel();
+    });
+  }
+
+  // Close panel when clicking outside
+  document.addEventListener("click", (e) => {
+    if (isPanelOpen && 
+        !supportButton.contains(e.target) && 
+        !contactPanel.contains(e.target)) {
+      hideContactPanel();
+    }
+  });
+
+  // Close panel when pressing Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isPanelOpen) {
+      hideContactPanel();
+    }
+  });
+
+  // Add subtle animation delay on page load
+  setTimeout(() => {
+    const floatingSupport = document.getElementById("floating-support");
+    if (floatingSupport) {
+      floatingSupport.classList.add("show");
+    }
+  }, 1000);
 });
 
 // Modern Scroll Animations
