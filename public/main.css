@@ -292,3 +292,9 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+
+/* Mirror reverse rotation for second SVG */
+.mirror-reverse-rotate {
+  transform: scaleX(-1) rotate(15deg);
+  transition: transform 0.3s ease;
+}
