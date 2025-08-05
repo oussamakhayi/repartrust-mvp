@@ -231,7 +231,42 @@ body {
   }
   
   .gradient-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  /* Fix hover scaling for buttons with animation classes */
+  /* Override slow transitions for gradient buttons */
+  a.hero-text.gradient-button.visible,
+  .hero-text.gradient-button.visible {
+    transition: all 0.3s ease !important;
+  }
+
+  a.scroll-animate.visible.gradient-button,
+  .scroll-animate.visible.gradient-button {
+    transition: all 0.3s ease !important;
+  }
+
+  /* Hover states with proper scaling */
+  a.hero-text.gradient-button.visible:hover,
+  .hero-text.gradient-button.visible:hover {
+    transform: translateX(0) scale(1.05) !important;
+  }
+
+  a.scroll-animate.visible.gradient-button:hover,
+  .scroll-animate.visible.gradient-button:hover {
+    transform: translateY(0) scale(1.05) !important;
+  }
+
+  a.scroll-animate.visible.fade-in-up.gradient-button:hover,
+  .scroll-animate.visible.fade-in-up.gradient-button:hover {
+    transform: translateY(0) translateX(0) scale(1.05) !important;
+  }
+
+  /* Ensure non-animated buttons work consistently */
+  button.gradient-button:hover {
+    transform: scale(1.05) !important;
+    transition: transform 0.3s ease !important;
   }
   
   .gradient-button span {
